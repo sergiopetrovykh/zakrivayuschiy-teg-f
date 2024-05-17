@@ -1,1 +1,27 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+  --main-font: "Inter", sans-serif; /* Основной шрифт Inter */
+  --main-font-weight: 400;
+  --accent-font: "PressStart2P", sans-serif; /* Акцентный шрифт Press Start 2P */
+  --accent-font-weight: 700;
+
+  --white-color: #fff;
+  --black-color: #000;
+  --green-color: #00cc14;
+
+  --border-color: var(--black-color, #000);
+  --text-color: var(--black-color, #000);
+  --card-background-color: var(--white-color, #fff);
+  --background-image: repeating-linear-gradient(
+      to left,
+      #d3d3d3 0 2px,
+      #d3d3d300 2px 4px
+    ),
+    repeating-linear-gradient(to bottom, #d3d3d3 0 2px, #d3d3d300 2px 4px),
+    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
+
+  --heart-main-body-color: none;
+  --heart-contour-color: var(--text-color, #000);
+  --heart-sparks-color: #ff0000;
+  --button-text-color: var(--card-background-color, #fff);
+}

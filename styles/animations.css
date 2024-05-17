@@ -12,3 +12,103 @@
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+/* До анимации мы имеем следующие состояния у сердца */
+.like-icon .core {
+  fill: var(--card-background-color, #ffffff);
+  transition: fill 0.3s linear 0.03s;
+}
+
+.like-icon .main-body {
+  fill: var(--card-background-color, #ffffff);
+  transition: fill 0.3s linear;
+}
+
+.like-icon .contour {
+  fill: var(--heart-contour-color, #000000);
+  transition: fill 0.3s linear;
+}
+
+.like-icon .heart {
+  transform-origin: center;
+}
+
+.like-icon .sparks {
+  opacity: 0;
+}
+
+/* Анимация при наведении (hover) на сердце */
+.like-icon:hover .core {
+  fill: var(--heart-contour-color, #000000);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:hover .main-body {
+  fill: var(--heart-contour-color, #000000);
+  transition: fill 0.3s linear 0.05s;
+}
+
+/* Анимация сердца в активном состоянии */
+.like-icon:active .core {
+  fill: var(--heart-sparks-color, #ff0000);
+  transition: fill 0.3s linear;
+}
+
+.like-icon:active .main-body {
+  fill: var(--heart-sparks-color, #ff0000);
+  transition: fill 0.3s linear 0.06s;
+}
+
+/* Анимация частей сердца по клику мышки */
+.like-icon.is-liked .core {
+  fill: var(--heart-sparks-color, #ff0000);
+  transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .main-body {
+  fill: var(--heart-sparks-color, #ff0000);
+  transition: fill 0.3s linear 0.06s;
+}
+
+.like-icon.is-liked .contour {
+  fill: var(--heart-sparks-color, #ff0000);
+  transition: fill 0.3s linear 0.06s;
+}
+
+.like-icon.is-liked .heart {
+  animation: heart 0.3s ease-in 0.1s 1 alternate;
+}
+
+.like-icon.is-liked .sparks {
+  animation: sparks 0.3s ease-in 0.3s 1 alternate;
+}
+
+/* Ключевые кадры для анимации стрелки в пунктах меню */
+@keyframes arrow {
+   from {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(4px);
+  }
+}
+
+/* Ключевые кадры для анимации увеличения сердца */
+@keyframes heart {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+/* Ключевые кадры для анимации искр у сердца */
+@keyframes sparks {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

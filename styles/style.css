@@ -17,4 +17,391 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--main-font, "Inter", sans-serif);
+  font-variation-settings: "wght" var(--main-font-weight, 400);
+  padding-block-start: 100px;
+  color: var(--text-color, #000);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  font-family: var(--page-accent-font, "PressStart2P", sans-serif);
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.main {
+  display: grid;
+  justify-items: center;
+  gap: 57px;
+  padding-block-end: 105px;
+}
+
+.card {
+  margin-inline: auto;
+  background: var(--card-background-color, #fff);
+  border: 2px solid var(--border-color, #000);
+  max-inline-size: 700px;
+}
+
+/* Состояние первого блока с заголовком */
+.header__banner {
+  margin-block-end: 100px;
+}
+
+.logo-group {
+  font-size: clamp(
+    3.063rem,
+    2.71rem + 1.502vw,
+    4.063rem
+  ); /* минимальный размер заголовка 49рх, максимальный 65рх. Мин.ширина экрана на мобильном 375, макс на десктопе 1440. Через clamp-калькулятор считаем функцию */
+}
+
+.logo__title {
+  margin-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
+  margin-block-end: 20px;
+}
+
+.logo__subtitle {
+  font-size: clamp(0.875rem, 0.677rem + 0.845vw, 1.438rem);
+}
+
+.header__theme-menu {
+  margin-block: 25px;
+}
+
+/* Описание пунктов переключения темы */
+.theme-menu__list {
+  display: grid;
+  gap: 8px;
+  padding-inline-start: 20px;
+}
+
+.theme-menu__button {
+  position: relative;
+  border: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: transparent;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Сбрасываем стандартную обводку вокруг элемента (пункта меню) при фокусе */
+.theme-menu__button:focus {
+  outline: none; /*убрали обводку*/
+  opacity: 0.6; /*снизили прозрачность*/
+}
+
+/* Отображение состояния пункта меню в состоянии фокуса, если пункт меню не отключен (выезжающая слева подчеркивающая полоска) */
+.theme-menu__button:not(:disabled)::after {
+  content: "";
+  display: block;
+  inline-size: 100%;
+  block-size: 2px; /* высота полоски */
+  background-color: currentColor;
+  transform: scaleX(
+    0
+  ); /* установили начальное масштабирование на нуль, тем самым скрыли полоску */
+  transform-origin: left; /* начальная точка преобразования - полоска появится слева */
+  transition: transform 0.3s ease;
+}
+
+/* Делает видимой выезжающую полоску под пунктом меню в состоянии видимого для пользователя фокуса (focus-visible)*/
+.theme-menu__button:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Состояние пункта меню при наведении мышкой */
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+/* Отображение состояния пункта меню в неактивном состоянии, когда пункт становится полу-прозрачным */
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none; /* элемент не будет реагировать на клик мышкой*/
+}
+
+/* Псевдоэлемент "стрелка" перед(before) выделенным пунктом*/
+.theme-menu__button:disabled::before {
+  content: "▶";
+  position: absolute;
+  animation: arrow 0.5s ease-in-out infinite alternate;
+  inset-inline-start: -20px;
+}
+
+/* Описание блока с картинкой и текстом */
+.post-list {
+  display: grid;
+  gap: 52px;
+}
+
+.post {
+  margin-inline: auto;
+  background: var(--card-background-color, #fff);
+  border: 2px solid var(--border-color, #000);
+  max-inline-size: 700px;
+}
+
+.post__header {
+  border-block-end: 2px solid var(--border-color, #000);
+  padding: 5px 10px;
+}
+
+.post__title {
+  font-size: 18px;
+  line-height: normal;
+  font-variation-settings: "wght" var(--accent-font-weight, 700);
+}
+
+.post__image {
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.post__image-cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.post__image-label {
+  position: absolute;
+  z-index: 1;
+  inset-inline-end: 25px;
+  inset-block-start: 25px;
+  font-family: var(--accent-font, "PressStart2P", sans-serif);
+  font-size: 14px;
+  line-height: normal;
+  color: var(--text-color, #000);
+  text-transform: uppercase;
+  text-shadow: 0 0 1px var(--card-background-color, #fff);
+  mix-blend-mode: hard-light;
+  opacity: 0.5;
+}
+
+.post__content {
+  display: grid;
+  gap: 27px;
+  padding: 25px 25px 0px 25px;
+  line-height: calc(20 / 18);
+  font-size: 18px;
+}
+
+.post__footer {
+  display: flex;
+  justify-content: end;
+  align-items: stretch;
+  padding: 25px;
+  gap: 5px;
+}
+
+/* Размеры кнопки в виде сердечка */
+.like-icon {
+  block-size: 36px;
+  inline-size: 39px;
+}
+
+/* Состояние кропки в виде сердечка */
+.card__icon-button {
+  display: grid;
+  border: 2px solid transparent;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* Сбросил дефолтную обводку иконки сердца в состоянии фокуса */
+.card__icon-button:focus {
+  outline: none;
+}
+
+/* Стилизовал сердце в состоянии focus-visible */
+.card__icon-button:focus-visible {
+  border-color: var(--text-color, #000);
+}
+
+/* описываю кнопку LIKE */
+.button {
+  position: relative;
+  z-index: 1;
+  font-family: var(--accent-font, "PressStart2P", sans-serif);
+  font-size: 14px;
+  inline-size: 130px;
+  text-transform: inherit;
+  background: var(--card-background-color, #fff);
+  border: 2px solid var(--text-color, #000);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+  overflow: hidden;
+}
+
+/* Сбросил дефолтную обводку кнопки в состоянии фокуса */
+.button:focus {
+  outline: none;
+}
+
+/* Стилизовал кнопку в состоянии focus-visible */
+.button:focus-visible {
+  box-shadow: 2px 2px 0px 0px var(--text-color, #000);
+}
+
+.button__text,
+.button__icon {
+  color: var(--button-text-color, #fff);
+  mix-blend-mode: difference;
+}
+
+/* Описываю состояние кнопки с псевдоэдементом (заливка) при наведении на неё курсора */
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0; /* Выравниваем заливку по верхней границе кнопки */
+  left: 0; /* Помещаем заливку за пределы кнопки по оси X */
+  inline-size: 100%; /* Ширина заливки равна ширине кнопки */
+  block-size: 100%; /* Высота заливки равна высоте кнопки */
+  background: var(--text-color, #000);
+  transition: transform 0.5s ease-in-out; /* Плавный переход для свойства transform */
+  transform: translateX(
+    -100%
+  ); /* Полоска заполнит кнопку слева на право по оси X */
+}
+
+/* Состояние кнопки по наведению курсора */
+.button:hover::before {
+  transform: translateX(0); /* При наведении заливка выезжает вправо */
+}
+
+/* Описываю вид кнопки "Сохранить на память" */
+.button-save {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  inline-size: clamp(19.125rem, 18.487rem + 2.723vw, 20.938rem);
+  padding: 15px 0px;
+  align-items: center;
+}
+
+/* Пишем состояния для всплывающего окна*/
+.modal {
+  max-inline-size: 357px;
+  padding: 30px;
+  border: 2px solid var(--text-color, #000);
+  background: var(--card-background-color, #fff);
+  font-family: var(--accent-font, "PressStart2P", sans-serif);
+  color: var(--text-color, #000);
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+/* Состояние всплывающего окна в открытом состоянии */
+.modal[open] {
+  display: grid;
+  gap: 30px;
+}
+
+/* Фон всплывающего окна */
+.modal::backdrop {
+  opacity: 0.75;
+  background: var(--black-сolor, #000);
+}
+
+.modal__content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal__button {
+  inline-size: 100%;
+  block-size: 38px;
+}
+
+.modal__icon {
+  flex-shrink: 0;
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+/* Задал размер дискеты в кнопке*/
+.button__icon {
+  block-size: 22px;
+  inline-size: 22px;
+}
+
+/* фильтры для изобращений */
+
+.filter-image__blur {
+  filter: blur(2px);
+}
+
+.filter-image__brightness {
+  filter: brightness(200%);
+}
+
+.filter-image__contrast {
+  filter: contrast(120%);
+}
+
+.filter-image__grayscale {
+  filter: grayscale(90%);
+}
+
+.filter-image__hue-rotate {
+  filter: hue-rotate(100deg);
+}
+
+.filter-image__invert {
+  filter: invert(100%);
+}
+
+.filter-image__opacity {
+  filter: opacity(200%);
+}
+
+.filter-image__saturate {
+  filter: saturate(150%);
+}
+
+.filter-image__sepia {
+  filter: sepia(50%);
+}
+
+.filter-image__multiple {
+  filter: brightness(200%) hue-rotate(50deg);
+}
+
+@supports ((-webkit-text-stroke: 1px var(--card-background-color, #fff))) {
+  .post__image-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--card-background-color, #fff);
+  }
+}
+
+@media (width <= 375px) {
+  .modal {
+    padding: 28px 34px 28px 40px;
+    max-inline-size: 340px;
+  }
+
+  .button-save {
+    flex-direction: column;
+  }
+
+  .button__icon {
+    block-size: 28px;
+    inline-size: 28px;
+  }
 }
