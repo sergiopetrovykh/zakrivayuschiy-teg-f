@@ -347,6 +347,11 @@
   gap: 16px;
 }
 
+/* Ограничение максимальной ширины надписи в элементе <p> */
+.modal__content p {
+  max-inline-size: 234px;
+}
+
 .modal__button {
   inline-size: 100%;
   block-size: 38px;
