@@ -277,9 +277,12 @@
   mix-blend-mode: difference;
 }
 
+/* Задал размер дискеты в кнопке*/
 .button__icon {
   color: var(--button-text-color, #fff);
   mix-blend-mode: difference;
+  block-size: 22px;
+  inline-size: 22px;
 }
 
 /* Описываю состояние кнопки с псевдоэдементом (заливка) при наведении на неё курсора */
@@ -353,12 +356,6 @@
   flex-shrink: 0;
   inline-size: 39px;
   block-size: 39px;
-}
-
-/* Задал размер дискеты в кнопке*/
-.button__icon {
-  block-size: 22px;
-  inline-size: 22px;
 }
 
 /* фильтры для изобращений */
