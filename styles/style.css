@@ -14,6 +14,10 @@
 
 */
 
+/* 
+*, *::before, *::after {  outline: 1px solid red;  } 
+*/
+
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
@@ -30,7 +34,7 @@
   display: grid;
   justify-items: center;
   justify-content: center;
-  font-family: var(--page-accent-font, "PressStart2P", sans-serif);
+  font-family: var(--page-accent-font, "PressStart2P", monospace);
   line-height: normal;
   text-transform: uppercase;
 }
@@ -55,24 +59,26 @@
 }
 
 .logo-group {
+  margin-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
+  margin-block-end: 20px;
+}
+
+.logo__title {
   font-size: clamp(
     3.063rem,
     2.71rem + 1.502vw,
     4.063rem
   ); /* минимальный размер заголовка 49рх, максимальный 65рх. Мин.ширина экрана на мобильном 375, макс на десктопе 1440. Через clamp-калькулятор считаем функцию */
-}
-
-.logo__title {
-  margin-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
-  margin-block-end: 20px;
+  line-height: 1;
 }
 
 .logo__subtitle {
+  line-height: 1;
   font-size: clamp(0.875rem, 0.677rem + 0.845vw, 1.438rem);
 }
 
 .header__theme-menu {
-  margin-block: 25px;
+  margin-block: 23px;
 }
 
 /* Описание пунктов переключения темы */
@@ -91,6 +97,7 @@
   transition: opacity 0.3s ease;
   cursor: pointer;
   appearance: none;
+  line-height: 1;
 }
 
 /* Сбрасываем стандартную обводку вокруг элемента (пункта меню) при фокусе */
@@ -100,7 +107,7 @@
 }
 
 /* Отображение состояния пункта меню в состоянии фокуса, если пункт меню не отключен (выезжающая слева подчеркивающая полоска) */
-.theme-menu__button:not(:disabled)::after {
+.theme-menu__button::after {
   content: "";
   display: block;
   inline-size: 100%;
@@ -136,6 +143,7 @@
   position: absolute;
   animation: arrow 0.5s ease-in-out infinite alternate;
   inset-inline-start: -20px;
+  inset-block-start: 1px;
 }
 
 /* Описание блока с картинкой и текстом */
@@ -158,7 +166,9 @@
 
 .post__title {
   font-size: 18px;
-  line-height: normal;
+  line-height: calc(
+    21.78 / 19
+  ); /* относительный line-height = line-height / font-size. */
   font-variation-settings: "wght" var(--accent-font-weight, 700);
 }
 
@@ -166,11 +176,15 @@
   inline-size: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
+  aspect-ratio: 1 / 1;
 }
 
 .post__image-cover {
   position: relative;
   overflow: hidden;
+  border-block-end: 2px solid #000; /* Задал границу под изображением */
+  box-sizing: border-box;
 }
 
 .post__image-label {
@@ -178,9 +192,9 @@
   z-index: 1;
   inset-inline-end: 25px;
   inset-block-start: 25px;
-  font-family: var(--accent-font, "PressStart2P", sans-serif);
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-size: 14px;
-  line-height: normal;
+  line-height: 1;
   color: var(--text-color, #000);
   text-transform: uppercase;
   text-shadow: 0 0 1px var(--card-background-color, #fff);
@@ -192,7 +206,7 @@
   display: grid;
   gap: 27px;
   padding: 25px 25px 0px 25px;
-  line-height: calc(20 / 18);
+  line-height: calc(21 / 18);
   font-size: 18px;
 }
 
@@ -235,9 +249,10 @@
 .button {
   position: relative;
   z-index: 1;
-  font-family: var(--accent-font, "PressStart2P", sans-serif);
+  font-family: var(--accent-font, "PressStart2P", monospace);
   font-size: 14px;
   inline-size: 130px;
+  line-height: calc(14 / 12.6);
   text-transform: inherit;
   background: var(--card-background-color, #fff);
   border: 2px solid var(--text-color, #000);
@@ -257,7 +272,11 @@
   box-shadow: 2px 2px 0px 0px var(--text-color, #000);
 }
 
-.button__text,
+.button__text {
+  color: var(--button-text-color, #fff);
+  mix-blend-mode: difference;
+}
+
 .button__icon {
   color: var(--button-text-color, #fff);
   mix-blend-mode: difference;
@@ -300,10 +319,11 @@
   padding: 30px;
   border: 2px solid var(--text-color, #000);
   background: var(--card-background-color, #fff);
-  font-family: var(--accent-font, "PressStart2P", sans-serif);
+  font-family: var(--accent-font, "PressStart2P", monospace);
   color: var(--text-color, #000);
   text-transform: uppercase;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: calc(21 / 14);
 }
 
 /* Состояние всплывающего окна в открытом состоянии */
@@ -347,20 +367,12 @@
   filter: blur(2px);
 }
 
-.filter-image__brightness {
-  filter: brightness(200%);
-}
-
 .filter-image__contrast {
   filter: contrast(120%);
 }
 
 .filter-image__grayscale {
   filter: grayscale(90%);
-}
-
-.filter-image__hue-rotate {
-  filter: hue-rotate(100deg);
 }
 
 .filter-image__invert {
@@ -383,10 +395,12 @@
   filter: brightness(200%) hue-rotate(50deg);
 }
 
-@supports ((-webkit-text-stroke: 1px var(--card-background-color, #fff))) {
+@supports (-webkit-text-stroke: 1px var(--card-background-color, #fff)) or
+  (text-stroke: 1px var(--card-background-color, #fff)) {
   .post__image-label {
     text-shadow: none;
     -webkit-text-stroke: 1px var(--card-background-color, #fff);
+    text-stroke: 1px var(--card-background-color, #fff);
   }
 }
 
