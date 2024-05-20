@@ -407,7 +407,7 @@
 }
 
 /* медиазапрос, в котором стили переписываются под мобильный вид */
-@media (width <= 376px) {
+@media (width <= 375px) {
   .modal {
     padding: 28px 34px 28px 40px;
     max-inline-size: 341px;
