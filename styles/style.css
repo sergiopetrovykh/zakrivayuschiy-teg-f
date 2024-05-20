@@ -363,7 +363,7 @@
   block-size: 39px;
 }
 
-/* фильтры для изобращений */
+/* фильтры для изображений */
 
 .filter-image__blur {
   filter: blur(2px);
@@ -406,10 +406,15 @@
   }
 }
 
-@media (width <= 375px) {
+/* медиазапрос, в котором стили переписываются под мобильный вид */
+@media (width <= 376px) {
   .modal {
     padding: 28px 34px 28px 40px;
-    max-inline-size: 340px;
+    max-inline-size: 341px;
+  }
+
+  .modal__content p {
+    max-inline-size: 198px;
   }
 
   .button-save {
