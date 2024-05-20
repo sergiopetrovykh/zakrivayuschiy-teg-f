@@ -2,7 +2,7 @@
 :root {
   --main-font: "Inter", sans-serif; /* Основной шрифт Inter */
   --main-font-weight: 400;
-  --accent-font: "PressStart2P", monospace; /* Акцентный шрифт Press Start 2P */
+  --accent-font: "PressStart2P", fantasy; /* Акцентный шрифт Press Start 2P */
   --accent-font-weight: 700;
 
   --white-color: #fff;

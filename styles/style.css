@@ -34,7 +34,7 @@
   display: grid;
   justify-items: center;
   justify-content: center;
-  font-family: var(--page-accent-font, "PressStart2P", monospace);
+  font-family: var(--page-accent-font, "PressStart2P", fantasy);
   line-height: normal;
   text-transform: uppercase;
 }
@@ -167,8 +167,8 @@
 .post__title {
   font-size: 18px;
   line-height: calc(
-    21.78 / 19
-  ); /* относительный line-height = line-height / font-size. */
+    21.78 / 18
+  ); /* относительный line-height = line-height 21.78 / font-size 18. */
   font-variation-settings: "wght" var(--accent-font-weight, 700);
 }
 
@@ -184,7 +184,7 @@
   position: relative;
   overflow: hidden;
   border-block-end: 2px solid var(--text-color, #000); /* Задал границу под изображением */
-  box-sizing: border-box;
+  /*box-sizing: border-box; ревьюер попросила убрать, т.к. border-box уже задали глобально в файле global.css */
 }
 
 .post__image-label {
@@ -249,10 +249,12 @@
 .button {
   position: relative;
   z-index: 1;
-  font-family: var(--accent-font, "PressStart2P", monospace);
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   font-size: 14px;
   inline-size: 130px;
-  line-height: calc(14 / 12.6);
+  line-height: calc(
+    12.6 / 14
+  ); /* относительный line-height = line-height 12.6 / font-size 14. */
   text-transform: inherit;
   background: var(--card-background-color, #fff);
   border: 2px solid var(--text-color, #000);
@@ -322,7 +324,7 @@
   padding: 30px;
   border: 2px solid var(--text-color, #000);
   background: var(--card-background-color, #fff);
-  font-family: var(--accent-font, "PressStart2P", monospace);
+  font-family: var(--accent-font, "PressStart2P", fantasy);
   color: var(--text-color, #000);
   text-transform: uppercase;
   font-size: 14px;
@@ -348,7 +350,7 @@
 }
 
 /* Ограничение максимальной ширины надписи в элементе <p> */
-.modal__content p {
+.modal__content-message {
   max-inline-size: 234px;
 }
 
