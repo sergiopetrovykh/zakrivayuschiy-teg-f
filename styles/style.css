@@ -183,7 +183,7 @@
 .post__image-cover {
   position: relative;
   overflow: hidden;
-  border-block-end: 2px solid #000; /* Задал границу под изображением */
+  border-block-end: 2px solid var(--text-color, #000); /* Задал границу под изображением */
   box-sizing: border-box;
 }
 
