@@ -409,7 +409,11 @@
 }
 
 /* медиазапрос, в котором стили переписываются под мобильный вид */
-@media (width < 376px) {
+@media (max-width: 375px) {
+  .page {
+    max-inline-size: 100vw;
+  }
+
   .modal {
     padding: 28px 34px 28px 40px;
     max-inline-size: 341px;
